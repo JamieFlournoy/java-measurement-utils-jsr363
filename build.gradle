@@ -1,0 +1,183 @@
+plugins {
+    // This is used for running "./gradlew dependencyUpdates" to find
+    // available library updates (for use when updating version numbers
+    // in this file).
+    id "com.github.ben-manes.versions" version "0.20.0"
+
+    // This adds ErrorProne, which warns about source code that looks
+    // like it's likely to be a bug, or to lead to future bugs.
+    id "net.ltgt.errorprone" version "0.6"
+
+    id 'maven-publish'
+    id 'signing'
+}
+
+apply plugin: 'java-library'
+apply plugin: 'net.ltgt.errorprone'
+
+repositories {
+    jcenter()
+}
+
+def errorprone_core_lib = "com.google.errorprone:error_prone_core:2.3.1"
+
+dependencies {
+    // Dependencies that are needed at runtime and compile-time, and
+    // that are also exposed as part of the public API:
+    api group: 'systems.uom', name: 'systems-common-java8', version: '0.7'
+    api group: 'systems.uom', name: 'systems-unicode-java8', version: '0.7'
+    api group: 'systems.uom', name: 'systems-quantity', version: '0.7'
+    // TODO: update these ^ with more recent versions. Also look at
+    // JSR 385 which is newer; see
+    // https://github.com/unitsofmeasurement/indriya
+
+    // Dependencies needed at runtime and compile-time, but not
+    // exposed in the API of this library:
+    implementation 'com.google.guava:guava:26.0-jre'
+
+    // Dependencies needed for running tests:
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.+'
+    testImplementation "com.google.truth:truth:0.30"
+
+    // Dependencies needed when running ErrorProne checks:
+    errorprone errorprone_core_lib
+}
+
+// Generate Javadoc documentation files from Java source code.
+javadoc {
+    source = sourceSets.main.allJava
+    // This classpath value makes the source's dependencies visible to
+    // the Javadoc tool.
+    classpath = sourceSets.main.runtimeClasspath
+
+    options.addBooleanOption('html5', true)
+    options {
+        // Only document public members.
+        setMemberLevel JavadocMemberLevel.PUBLIC
+        setAuthor false
+
+        // Generate Javadocs links even when offline, using the
+        // element-list or package-list file copied from the public
+        // Javadocs to a local subdir. (The package-list file contains
+        // a list of Java package names of classes which are
+        // documented in the Javadocs rooted at the specified URL.)
+        linksOffline "https://docs.oracle.com/javase/10/docs/api/", 'gradle/javadocs/jdk/10'
+        linksOffline "https://google.github.io/guava/releases/26.0-jre/api/docs/", 'gradle/javadocs/guava/26.0-jre'
+    }
+}
+
+// Make a source code JAR archive.
+task sourcesJar(type: Jar, dependsOn: 'classes') {
+    classifier = 'sources'
+    from sourceSets.main.allJava
+}
+
+// Make a Javadoc JAR archive.
+task javadocJar(type: Jar, dependsOn: 'javadoc') {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            // Include the sources and Javadoc JAR files when
+            // publishing.
+            artifact sourcesJar
+            artifact javadocJar
+
+            afterEvaluate {
+                groupId = 'com.pervasivecode'
+                artifactId = 'java-measurement-utils'
+
+                // This must end in "-SNAPSHOT" for publishing assets
+                // to a "snapshot" Maven repository to work, or else
+                // the Gradle task will fail with a 400 Bad Request
+                // response. Likewise, publishing assets to a release
+                // staging repository will only work if this version
+                // does _not_ end in "-SNAPSHOT".
+                version = '0.9'
+
+                pom {
+                    name = 'Java Measurement Utilities'
+                    description = 'Classes for using and formatting data and data-rate values in the JSR 363 Units of Measurement API.'
+                    url = 'https://github.com/JamieFlournoy/java-measurement-utils'
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'jamieflournoy'
+                            name = 'Jamie Flournoy'
+                            organization = 'Pervasive Code'
+                            email = 'jamie@pervasivecode.com'
+                            url = 'https://github.com/JamieFlournoy'
+                            organizationUrl = 'http://www.pervasivecode.com/'
+                        }
+                    }
+
+                    issueManagement {
+                        url = 'https://github.com/JamieFlournoy/java-measurement-utils/issues'
+                        system = 'GitHub Issues'
+                    }
+
+                    scm {
+		        url = 'https://github.com/JamieFlournoy/java-measurement-utils'
+                        connection = 'scm:git:git://github.com/JamieFlournoy/java-measurement-utils.git'
+		        developerConnection = 'scm:git:git@github.com:JamieFlournoy/java-measurement-utils.git'
+                    }
+                }
+
+            }
+        }
+    }
+
+    // Publish directly to a local directory (not the local Maven
+    // repository, but a directory under the build dir), for
+    // inspection & manual uploading.
+    repositories {
+        maven {
+            name = 'buildDir'
+            url = "file://${buildDir}/repo"
+        }
+        // Note: to deploy to this repository, you must set the
+        // OSSRH_PASSWORD environment variable. Also, the publication
+        // version (see above) must end in "-SNAPSHOT" or this will
+        // fail with an HTTP response code of 400 Bad Request.
+        maven {
+            name = 'ossrhSnapshots'
+            url = 'https://oss.sonatype.org/content/repositories/snapshots'
+            credentials {
+                username = ossrhUsername
+                password = System.getenv('OSSRH_PASSWORD')
+            }
+        }
+        // Note: to deploy to this repository, you must set the
+        // OSSRH_PASSWORD environment variable. Also, the publication
+        // version (see above) must _not_ end in "-SNAPSHOT" or this
+        // will fail with an HTTP response code of 400 Bad Request.
+        maven {
+            name = 'ossrhReleaseStaging'
+            url = 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+            credentials {
+                username = ossrhUsername
+                password = System.getenv('OSSRH_PASSWORD')
+            }
+        }
+    }
+}
+
+signing {
+    // Sign assets that are destined for publication in a Maven Java
+    // archive.
+    useGpgCmd()
+    sign publishing.publications.mavenJava
+}
