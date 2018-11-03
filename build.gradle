@@ -1,3 +1,14 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "com.commercehub:gradle-cucumber-jvm-plugin:0.8"
+  }
+}
+
 plugins {
     // This is used for running "./gradlew dependencyUpdates" to find
     // available library updates (for use when updating version numbers
@@ -7,6 +18,10 @@ plugins {
     // This adds ErrorProne, which warns about source code that looks
     // like it's likely to be a bug, or to lead to future bugs.
     id "net.ltgt.errorprone" version "0.6"
+
+    // This plugin provides integration test tasks using the Cucumber
+    // behavior-driven development tool.
+    id 'com.commercehub.cucumber-jvm' version '0.8'
 
     id 'maven-publish'
     id 'signing'
@@ -40,9 +55,59 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:2.+'
     testImplementation "com.google.truth:truth:0.30"
 
+    // To make the Eclipse Gradle plugin put Cucumber jars on the source path:
+    testImplementation 'info.cukes:cucumber-java8:1.2.5'
+
     // Dependencies needed when running ErrorProne checks:
     errorprone errorprone_core_lib
 }
+
+
+// Example code shouldn't be put in the library .jar, but should be compiled
+// before running unit and integration tests. So create a separate sourceSet
+// for example code, and make a task to compile it.
+sourceSets {
+    examples {
+        java {
+            compileClasspath += main.output + main.runtimeClasspath
+            runtimeClasspath += main.output + main.runtimeClasspath
+       }
+    }
+}
+configurations {
+    examplesCompile.extendsFrom mainCompile
+    examplesRuntime.extendsFrom mainRuntime
+}
+
+addCucumberSuite 'cucumberTest'
+cucumber {
+    maxParallelForks = 4
+}
+cucumberTest {
+    stepDefinitionRoots = ['com.pervasivecode.utils.measure.test.cucumber.steps']
+}
+dependencies {
+    cucumberTestImplementation 'info.cukes:cucumber-java:1.2.5'
+    cucumberTestImplementation 'junit:junit:4.12'
+    cucumberTestImplementation "com.google.truth:truth:0.30"
+    cucumberTestImplementation  group: 'com.google.guava', name: 'guava', version: '26.0-jre'
+}
+sourceSets {
+    cucumberTest {
+        java {
+            compileClasspath += examples.output
+            runtimeClasspath += examples.output
+        }
+    }
+}
+
+// Don't build cucumber test code unless examples code builds.
+cucumberTestClasses.dependsOn 'examplesClasses'
+// Don't run Cucumber integration tests unless JUnit unit tests pass.
+cucumberTest.dependsOn 'test'
+
+
+
 
 // Generate Javadoc documentation files from Java source code.
 javadoc {
@@ -130,9 +195,9 @@ publishing {
                     }
 
                     scm {
-		        url = 'https://github.com/JamieFlournoy/java-measurement-utils'
+                url = 'https://github.com/JamieFlournoy/java-measurement-utils'
                         connection = 'scm:git:git://github.com/JamieFlournoy/java-measurement-utils.git'
-		        developerConnection = 'scm:git:git@github.com:JamieFlournoy/java-measurement-utils.git'
+                developerConnection = 'scm:git:git@github.com:JamieFlournoy/java-measurement-utils.git'
                     }
                 }
 

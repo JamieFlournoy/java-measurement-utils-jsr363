@@ -8,7 +8,7 @@ import systems.uom.quantity.InformationRate;
 import tec.uom.se.unit.ProductUnit;
 
 /** Units to help with type-safe formatting of information rates. */
-public class InformationRates {
+public class InformationRateUnits {
   public final static Unit<InformationRate> BYTES_PER_SECOND =
       new ProductUnit<>(BYTE.divide(SECOND));
 

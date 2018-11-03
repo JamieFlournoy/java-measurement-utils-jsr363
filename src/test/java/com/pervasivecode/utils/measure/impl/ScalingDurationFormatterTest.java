@@ -14,6 +14,10 @@ public class ScalingDurationFormatterTest {
     return Quantities.getQuantity(Long.valueOf(millisValue), MILLI(SECOND));
   }
 
+  private static Quantity<Time> measureOfSeconds(long secondsValue) {
+    return Quantities.getQuantity(Long.valueOf(secondsValue), SECOND);
+  }
+
   private static void checkDurationFormat(Quantity<Time> duration, String expected) {
     assertThat(ScalingDurationFormatter.US().format(duration)).isEqualTo(expected);
   }
@@ -41,5 +45,13 @@ public class ScalingDurationFormatterTest {
   @Test
   public void format_duration_withBillionsOfMillis_shouldUseHoursMinutesAndSeconds() {
     checkDurationFormat(measureOfMillis(2_521_370_223L), "4w 1d 4h 22m 50s");
+  }
+
+  @Test
+  public void format_durations_inJavadocComments_shouldFormatAsDescribed() {
+    checkDurationFormat(measureOfMillis(12345), "12.345s");
+    checkDurationFormat(measureOfMillis(345), "345ms");
+    checkDurationFormat(measureOfSeconds(3600), "1h 0m 0s");
+    checkDurationFormat(measureOfSeconds(86400 - 1), "23h 59m 59s");
   }
 }
