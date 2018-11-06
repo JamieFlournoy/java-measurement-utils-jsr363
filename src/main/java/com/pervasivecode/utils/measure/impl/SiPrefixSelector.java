@@ -25,36 +25,60 @@ public class SiPrefixSelector implements QuantityPrefixSelector {
   public <Q extends Quantity<Q>> Quantity<Q> selectBestPrefix(Quantity<Q> measure,
       Unit<Q> formatUnit) {
     BigDecimal asBig = BigDecimal.valueOf(measure.getValue().doubleValue());
-    if (asBig.compareTo(SiPrefixes.YOTTA_FACTOR) >= 0) {
+    if (asBig.compareTo(SiThousandPrefixes.YOTTA_FACTOR) >= 0) {
       return measure.to(MetricPrefix.YOTTA(formatUnit));
     }
-    if (asBig.compareTo(SiPrefixes.ZETTA_FACTOR) >= 0) {
+    if (asBig.compareTo(SiThousandPrefixes.ZETTA_FACTOR) >= 0) {
       return measure.to(MetricPrefix.ZETTA(formatUnit));
     }
 
+    // TODO just use asBig here.
     long asLong = measure.getValue().longValue();
-    if (asLong >= SiPrefixes.EXA_FACTOR) {
+    if (asLong >= SiThousandPrefixes.EXA_FACTOR) {
       return measure.to(MetricPrefix.EXA(formatUnit));
     }
-    if (asLong >= SiPrefixes.PETA_FACTOR) {
+    if (asLong >= SiThousandPrefixes.PETA_FACTOR) {
       return measure.to(MetricPrefix.PETA(formatUnit));
     }
-
-    if (asLong >= SiPrefixes.TERA_FACTOR) {
+    if (asLong >= SiThousandPrefixes.TERA_FACTOR) {
       return measure.to(MetricPrefix.TERA(formatUnit));
     }
-
-    if (asLong >= SiPrefixes.GIGA_FACTOR) {
+    if (asLong >= SiThousandPrefixes.GIGA_FACTOR) {
       return measure.to(MetricPrefix.GIGA(formatUnit));
     }
-
-    if (asLong >= SiPrefixes.MEGA_FACTOR) {
+    if (asLong >= SiThousandPrefixes.MEGA_FACTOR) {
       return measure.to(MetricPrefix.MEGA(formatUnit));
     }
-
-    if (asLong >= SiPrefixes.KILO_FACTOR) {
+    if (asLong >= SiThousandPrefixes.KILO_FACTOR) {
       return measure.to(MetricPrefix.KILO(formatUnit));
     }
+    if (asBig.compareTo(BigDecimal.ONE) < 0) {
+      if (asBig.compareTo(SiThousandPrefixes.MILLI_FACTOR) >= 0) {
+        return measure.to(MetricPrefix.MILLI(formatUnit));
+      }
+      if (asBig.compareTo(SiThousandPrefixes.MICRO_FACTOR) >= 0) {
+        return measure.to(MetricPrefix.MICRO(formatUnit));
+      }
+      if (asBig.compareTo(SiThousandPrefixes.NANO_FACTOR) >= 0) {
+        return measure.to(MetricPrefix.NANO(formatUnit));
+      }
+      if (asBig.compareTo(SiThousandPrefixes.PICO_FACTOR) >= 0) {
+        return measure.to(MetricPrefix.PICO(formatUnit));
+      }
+      if (asBig.compareTo(SiThousandPrefixes.FEMTO_FACTOR) >= 0) {
+        return measure.to(MetricPrefix.FEMTO(formatUnit));
+      }
+      if (asBig.compareTo(SiThousandPrefixes.ATTO_FACTOR) >= 0) {
+        return measure.to(MetricPrefix.ATTO(formatUnit));
+      }
+      if (asBig.compareTo(SiThousandPrefixes.ZEPTO_FACTOR) >= 0) {
+        return measure.to(MetricPrefix.ZEPTO(formatUnit));
+      }
+      if (asBig.compareTo(SiThousandPrefixes.YOCTO_FACTOR) >= 0) {
+        return measure.to(MetricPrefix.YOCTO(formatUnit));
+      }
+    }
+    
     return measure.to(formatUnit);
   }
 }

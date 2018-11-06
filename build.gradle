@@ -5,7 +5,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "com.commercehub:gradle-cucumber-jvm-plugin:0.8"
+    classpath "com.commercehub:gradle-cucumber-jvm-plugin:0.14"
   }
 }
 
@@ -21,7 +21,7 @@ plugins {
 
     // This plugin provides integration test tasks using the Cucumber
     // behavior-driven development tool.
-    id 'com.commercehub.cucumber-jvm' version '0.8'
+    id 'com.commercehub.cucumber-jvm' version '0.14'
 
     id 'maven-publish'
     id 'signing'
@@ -34,14 +34,12 @@ repositories {
     jcenter()
 }
 
-def errorprone_core_lib = "com.google.errorprone:error_prone_core:2.3.1"
-
 dependencies {
     // Dependencies that are needed at runtime and compile-time, and
     // that are also exposed as part of the public API:
-    api group: 'systems.uom', name: 'systems-common-java8', version: '0.7'
-    api group: 'systems.uom', name: 'systems-unicode-java8', version: '0.7'
-    api group: 'systems.uom', name: 'systems-quantity', version: '0.7'
+    api group: 'systems.uom', name: 'systems-common-java8', version: '0.9'
+    api group: 'systems.uom', name: 'systems-unicode-java8', version: '0.9'
+    api group: 'systems.uom', name: 'systems-quantity', version: '0.9'
     // TODO: update these ^ with more recent versions. Also look at
     // JSR 385 which is newer; see
     // https://github.com/unitsofmeasurement/indriya
@@ -53,13 +51,13 @@ dependencies {
     // Dependencies needed for running tests:
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:2.+'
-    testImplementation "com.google.truth:truth:0.30"
+    testImplementation "com.google.truth:truth:0.42"
 
     // To make the Eclipse Gradle plugin put Cucumber jars on the source path:
     testImplementation 'info.cukes:cucumber-java8:1.2.5'
 
     // Dependencies needed when running ErrorProne checks:
-    errorprone errorprone_core_lib
+    errorprone "com.google.errorprone:error_prone_core:2.3.2"
 }
 
 
@@ -89,7 +87,7 @@ cucumberTest {
 dependencies {
     cucumberTestImplementation 'info.cukes:cucumber-java:1.2.5'
     cucumberTestImplementation 'junit:junit:4.12'
-    cucumberTestImplementation "com.google.truth:truth:0.30"
+    cucumberTestImplementation "com.google.truth:truth:0.42"
     cucumberTestImplementation  group: 'com.google.guava', name: 'guava', version: '26.0-jre'
 }
 sourceSets {
