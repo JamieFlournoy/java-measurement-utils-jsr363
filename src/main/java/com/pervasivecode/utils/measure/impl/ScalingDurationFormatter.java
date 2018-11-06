@@ -11,7 +11,7 @@ import com.google.common.collect.ImmutableList;
 import com.pervasivecode.utils.measure.api.QuantityFormatter;
 
 /**
- * Instances format a @{code Quantity}&lt;{@code Time}&gt; value with a scale expressed in standard
+ * Instances format a {@code Quantity}&lt;{@code Time}&gt; value with a scale expressed in standard
  * units of time (seconds, minutes, hours, etc.). The maximum unit of time that is supported is the
  * week, since the size of larger units of time is not fixed.
  */

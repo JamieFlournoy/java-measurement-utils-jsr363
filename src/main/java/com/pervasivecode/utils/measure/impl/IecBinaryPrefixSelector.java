@@ -16,7 +16,7 @@ import tec.uom.lib.common.BinaryPrefix;
 public class IecBinaryPrefixSelector implements QuantityPrefixSelector {
 
   /**
-   * Apply an appropriate prefix from the IEc binary set of prefixes for a given measurement.
+   * Apply an appropriate prefix from the IEC binary set of prefixes for a given measurement.
    *
    * @param measure A value to scale with a prefix.
    * @param formatUnit The base "ones" unit of the provided measure.
