@@ -46,7 +46,7 @@ dependencies {
 
     // Dependencies needed at runtime and compile-time, but not
     // exposed in the API of this library:
-    implementation 'com.google.guava:guava:26.0-jre'
+    implementation 'com.google.guava:guava:27.0-jre'
 
     // Dependencies needed for running tests:
     testImplementation 'junit:junit:4.12'
@@ -54,7 +54,7 @@ dependencies {
     testImplementation "com.google.truth:truth:0.42"
 
     // To make the Eclipse Gradle plugin put Cucumber jars on the source path:
-    testImplementation 'info.cukes:cucumber-java8:1.2.5'
+    testImplementation 'io.cucumber:cucumber-java8:4.2.0'
 
     // Dependencies needed when running ErrorProne checks:
     errorprone "com.google.errorprone:error_prone_core:2.3.2"
@@ -85,10 +85,10 @@ cucumberTest {
     stepDefinitionRoots = ['com.pervasivecode.utils.measure.test.cucumber.steps']
 }
 dependencies {
-    cucumberTestImplementation 'info.cukes:cucumber-java:1.2.5'
+    cucumberTestImplementation 'io.cucumber:cucumber-java8:4.2.0'
     cucumberTestImplementation 'junit:junit:4.12'
     cucumberTestImplementation "com.google.truth:truth:0.42"
-    cucumberTestImplementation  group: 'com.google.guava', name: 'guava', version: '26.0-jre'
+    cucumberTestImplementation  group: 'com.google.guava', name: 'guava', version: '27.0-jre'
 }
 sourceSets {
     cucumberTest {
@@ -126,7 +126,7 @@ javadoc {
         // a list of Java package names of classes which are
         // documented in the Javadocs rooted at the specified URL.)
         linksOffline "https://docs.oracle.com/javase/10/docs/api/", 'gradle/javadocs/jdk/10'
-        linksOffline "https://google.github.io/guava/releases/26.0-jre/api/docs/", 'gradle/javadocs/guava/26.0-jre'
+        linksOffline "https://google.github.io/guava/releases/27.0-jre/api/docs/", 'gradle/javadocs/guava/27.0-jre'
     }
 }
 
