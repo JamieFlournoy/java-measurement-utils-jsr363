@@ -1,8 +1,10 @@
-# Pervasive Code's Java Measurement Utilities
+# Pervasive Code's Java Measurement Utilities for JSR 363
 
 This library includes classes for using the [JSR 363 Units of Measurement API](https://jcp.org/en/jsr/detail?id=363) with measurements of amount of data and rate of data.
 
 The JSR 363 API specification provides for a type-safe Java representation of quantities with units.
+
+This library depends on the [Units of Measurement](https://github.com/unitsofmeasurement) GitHub project and its [Units of Measurement Systems](https://github.com/unitsofmeasurement/uom-systems) and [JSR 363 Implementation for Java SE 8](https://github.com/unitsofmeasurement/uom-se).
 
 This library provides bytes-per-second and bits-per-second unit types, and code to format quantities using these types in familiar formats, such as "300 GB" (SI prefixes) or "1.4 KiB" (IEC binary prefixes).
 
@@ -13,7 +15,7 @@ See the separate [OVERVIEW.md](OVERVIEW.md) file for a description of what inter
 
 ## Including it in your project
 
-Use groupId `com.pervasivecode`, name `java-measurement-utils`, version `0.9` in your build tool of choice.
+Use groupId `com.pervasivecode`, name `java-measurement-utils-jsr363`, version `0.9` in your build tool of choice.
 
 ### Gradle Example
 
@@ -24,10 +26,10 @@ If you are using Gradle 4.x, put this in your build.properties file:
     mavenCentral();
 
 // in your build.gradle's dependencies {} block:
-    implementation 'com.pervasivecode:java-measurement-utils:0.9'
+    implementation 'com.pervasivecode:java-measurement-utils-jsr363:0.9'
 
     // or, if you prefer the separated group/name/version syntax:
-    implementation group: 'com.pervasivecode', name: 'java-measurement-utils', version: '0.9'
+    implementation group: 'com.pervasivecode', name: 'java-measurement-utils-jsr363', version: '0.9'
 ```
 
 

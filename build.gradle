@@ -156,7 +156,7 @@ publishing {
 
             afterEvaluate {
                 groupId = 'com.pervasivecode'
-                artifactId = 'java-measurement-utils'
+                artifactId = 'java-measurement-utils-jsr363'
 
                 // This must end in "-SNAPSHOT" for publishing assets
                 // to a "snapshot" Maven repository to work, or else
@@ -169,7 +169,7 @@ publishing {
                 pom {
                     name = 'Java Measurement Utilities'
                     description = 'Classes for using and formatting data and data-rate values in the JSR 363 Units of Measurement API.'
-                    url = 'https://github.com/JamieFlournoy/java-measurement-utils'
+                    url = 'https://github.com/JamieFlournoy/java-measurement-utils-jsr363'
 
                     licenses {
                         license {
@@ -190,14 +190,14 @@ publishing {
                     }
 
                     issueManagement {
-                        url = 'https://github.com/JamieFlournoy/java-measurement-utils/issues'
+                        url = 'https://github.com/JamieFlournoy/java-measurement-utils-jsr363/issues'
                         system = 'GitHub Issues'
                     }
 
                     scm {
-                url = 'https://github.com/JamieFlournoy/java-measurement-utils'
-                        connection = 'scm:git:git://github.com/JamieFlournoy/java-measurement-utils.git'
-                developerConnection = 'scm:git:git@github.com:JamieFlournoy/java-measurement-utils.git'
+                url = 'https://github.com/JamieFlournoy/java-measurement-utils-jsr363'
+                        connection = 'scm:git:git://github.com/JamieFlournoy/java-measurement-utils-jsr363.git'
+                developerConnection = 'scm:git:git@github.com:JamieFlournoy/java-measurement-utils-jsr363.git'
                     }
                 }
 
