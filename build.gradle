@@ -154,7 +154,7 @@ publishing {
 
             afterEvaluate {
                 groupId = 'com.pervasivecode'
-                artifactId = 'java-measurement-utils-jsr363'
+                artifactId = 'measurement-utils-jsr363'
 
                 // This must end in "-SNAPSHOT" for publishing assets
                 // to a "snapshot" Maven repository to work, or else
@@ -165,7 +165,7 @@ publishing {
                 version = '0.9'
 
                 pom {
-                    name = 'Java Measurement Utilities'
+                    name = 'Java Measurement Utilities for JSR 363'
                     description = 'Classes for using and formatting data and data-rate values in the JSR 363 Units of Measurement API.'
                     url = 'https://github.com/JamieFlournoy/java-measurement-utils-jsr363'
 
