@@ -20,7 +20,7 @@ Instances can provide the appropriate String label for a specified unit in a giv
 
 Example: for the unit KIBI * InformationRate, a US-locale instance would return "KiBps" or "KiB/s".
 
-## Classes
+## Implementation Classes
 
 ### [IecBinaryPrefixSelector](src/main/java/com/pervasivecode/utils/measure/impl/IecBinaryPrefixSelector.java)
 
@@ -61,3 +61,29 @@ This class provides unit labels for a single locale by looking them up in a stat
 ### [SimpleUnitLabelProviders](src/main/java/com/pervasivecode/utils/measure/impl/SimpleUnitLabelProviders.java)
 
 Factory methods for instances of SimpleUnitLabelProvider, providing prefixed unit labels for information units BIT, BYTE, BYTES\_PER\_SECOND and BITS\_PER\_SECOND.
+
+## Example Code
+
+### [BitsPerSecondExample](src/examples/java/com/pervasivecode/utils/measure/examples/BitsPerSecondExample.java)
+
+Print a series of quantities of data rate in terms of bits per second, scaled with SI prefixes and formatted for the US locale.
+
+
+### [BytesExample](src/examples/java/com/pervasivecode/utils/measure/examples/BytesExample.java)
+
+Print a series of quantities of data in terms of bytes, scaled with IEC binary prefixes and formatted for the US locale.
+
+
+### [BytesPerSecondExample](src/examples/java/com/pervasivecode/utils/measure/examples/BytesPerSecondExample.java)
+
+Print a series of quantities of data rate in terms of bytes per second, scaled with IEC binary prefixes and formatted for the US locale.
+
+
+### [DurationExample](src/examples/java/com/pervasivecode/utils/measure/examples/DurationExample.java)
+
+Print a series of quantities of time, formatted in two ways:
+
+* First, with a ScalingDurationFormatter (hours, minutes, seconds) instance,
+
+* Second, with a ScalingFormatter<Time> instance that shows
+ SECONDs scaled with SI prefixes.

@@ -13,6 +13,11 @@ This library provides bytes-per-second and bits-per-second unit types, and code 
 
 See the separate [OVERVIEW.md](OVERVIEW.md) file for a description of what interfaces and classes are included.
 
+## How to use it in your code
+
+See the [Example Code](OVERVIEW.md#Example_Code) section in [OVERVIEW.md](OVERVIEW.md) for details.
+
+
 ## Including it in your project
 
 Use groupId `com.pervasivecode`, name `measurement-utils-jsr363`, version `0.9` in your build tool of choice.
