@@ -25,7 +25,7 @@ import tec.uom.se.quantity.Quantities;
  * <li>Second, with a {@link ScalingFormatter}{@code <}{@link Time}{@code >} instance that shows
  * {@link SI#SECOND}{@code S} scaled with SI prefixes.</li>
  * </ul>
- * 
+ *
  * @see {@code examples.feature} for expected output of this program.
  */
 public class DurationExample implements ExampleApplication {

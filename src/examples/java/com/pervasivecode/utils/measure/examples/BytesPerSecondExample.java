@@ -13,7 +13,7 @@ import tec.uom.se.quantity.Quantities;
 /**
  * Print a series of quantities of data rate in terms of bytes per second, scaled with IEC binary
  * prefixes and formatted for the {@link Locale#US US} locale.
- * 
+ *
  * @see {@code examples.feature} for expected output of this program.
  */
 public class BytesPerSecondExample implements ExampleApplication {

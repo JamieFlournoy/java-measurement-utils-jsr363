@@ -15,7 +15,7 @@ See the separate [OVERVIEW.md](OVERVIEW.md) file for a description of what inter
 
 ## How to use it in your code
 
-See the [Example Code](OVERVIEW.md#Example_Code) section in [OVERVIEW.md](OVERVIEW.md) for details.
+See the [Example Code](OVERVIEW.md#example-code) section in [OVERVIEW.md](OVERVIEW.md) for details.
 
 
 ## Including it in your project

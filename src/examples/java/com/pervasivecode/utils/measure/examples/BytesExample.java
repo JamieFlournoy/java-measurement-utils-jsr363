@@ -12,7 +12,7 @@ import tec.uom.se.quantity.Quantities;
 /**
  * Print a series of quantities of data in terms of bytes, scaled with IEC binary prefixes and
  * formatted for the {@link Locale#US US} locale.
- * 
+ *
  * @see {@code examples.feature} for expected output of this program.
  */
 public class BytesExample implements ExampleApplication {

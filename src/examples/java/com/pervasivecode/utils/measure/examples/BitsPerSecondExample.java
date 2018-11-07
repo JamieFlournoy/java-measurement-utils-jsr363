@@ -12,7 +12,7 @@ import tec.uom.se.quantity.Quantities;
 /**
  * Print a series of quantities of data rate in terms of bits per second, scaled with SI prefixes
  * and formatted for the {@link Locale#US US} locale.
- * 
+ *
  * @see {@code examples.feature} for expected output of this program.
  */
 public class BitsPerSecondExample implements ExampleApplication {
