@@ -15,7 +15,7 @@ public class SimpleUnitLabelProvider<Q extends Quantity<Q>> implements UnitLabel
 
   /**
    * Set up a new instance with a static mapping of units to labels.
-   * 
+   *
    * @param unitLabels The mapping of units to labels.
    */
   public SimpleUnitLabelProvider(Map<Unit<Q>, String> unitLabels) {

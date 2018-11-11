@@ -120,7 +120,7 @@ public class SimpleUnitLabelProviders {
    * Get a UnitLabelProvider that can provide labels for {@link Information} units {@link CLDR#BIT
    * BIT} and {@link CLDR#BYTE BYTE} with SI and IEC binary prefixes for the
    * {@link java.util.Locale#US US} locale.
-   * 
+   *
    * @return The UnitLabelProvider described above.
    */
   public static UnitLabelProvider<Information> getUsInformationLabeler() {
@@ -133,7 +133,7 @@ public class SimpleUnitLabelProviders {
    * {@link InformationRateUnits#BYTES_PER_SECOND BYTES_PER_SECOND} and
    * {@link InformationRateUnits#BITS_PER_SECOND BITS_PER_SECOND} with SI and IEC binary prefixes
    * for the {@link java.util.Locale#US US} locale.
-   * 
+   *
    * @return The UnitLabelProvider described above.
    */
   public static UnitLabelProvider<InformationRate> getUsInformationRateLabeler() {

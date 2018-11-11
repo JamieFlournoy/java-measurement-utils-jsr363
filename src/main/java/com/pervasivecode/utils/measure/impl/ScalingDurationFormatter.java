@@ -24,7 +24,7 @@ public class ScalingDurationFormatter implements QuantityFormatter<Time> {
   /**
    * Get an instance that will use abbreviated US suffixes such as "s" for seconds and "m" for
    * minutes.
-   * 
+   *
    * @return An instance that will format values in a form appropriate for the US locale.
    */
   public static ScalingDurationFormatter US() {
@@ -53,7 +53,7 @@ public class ScalingDurationFormatter implements QuantityFormatter<Time> {
    * precision. Values of less than one second are scaled to milliseconds; values larger than one
    * second are scaled to seconds and shown as a decimal value.
    * <p>
-   * 
+   *
    * Examples: Given the suffixes from {@link ScalingDurationFormatter#US}: 12.345 seconds will be
    * represented as "12.345s". 0.345 seconds will be represented as "345 ms". 3600 seconds will be
    * represented as "1h 0m 0s". One day minus one second (that is, 86399 seconds) will be

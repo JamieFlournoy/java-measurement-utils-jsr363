@@ -14,7 +14,7 @@ public class ScalingFormatters {
   /**
    * Get a formatter that presents data amounts measured in bytes scaled with IEC binary prefixes
    * and formatted as appropriate for the {@link Locale#US US} locale.
-   * 
+   *
    * @return The formatter.
    */
   public static ScalingFormatter<Information> dataAmountInIecBinaryBytesUs() {
@@ -25,7 +25,7 @@ public class ScalingFormatters {
   /**
    * Get a formatter that presents data amounts measured in bits scaled with SI prefixes and
    * formatted as appropriate for the {@link Locale#US US} locale.
-   * 
+   *
    * @return The formatter.
    */
   public static ScalingFormatter<Information> dataAmountInSiBitsUs() {
@@ -36,7 +36,7 @@ public class ScalingFormatters {
   /**
    * Get a formatter that presents data rates measured in bytes per second scaled with IEC binary
    * prefixes and formatted as appropriate for the {@link Locale#US US} locale.
-   * 
+   *
    * @return The formatter.
    */
   public static ScalingFormatter<InformationRate> dataRateInIecBinaryBytesPerSecondUs() {
@@ -48,7 +48,7 @@ public class ScalingFormatters {
   /**
    * Get a formatter that presents data amounts measured in bits per second scaled with SI prefixes
    * and formatted as appropriate for the {@link Locale#US US} locale.
-   * 
+   *
    * @return The formatter.
    */
   public static ScalingFormatter<InformationRate> dataRateInSiBitsPerSecondUs() {

@@ -28,7 +28,7 @@ public class ScalingFormattersTest {
   private static Quantity<Information> measureOfBits(long bytesValue) {
     return Quantities.getQuantity(bytesValue, CLDR.BIT);
   }
-  
+
   // Bits are usually used as a prefixless unit in small quantities to refer to storage, or in
   // larger quantities with SI prefixes to talk about data communications. So we will test with
   // SI prefixes.
@@ -36,7 +36,7 @@ public class ScalingFormattersTest {
     ScalingFormatter<Information> siBitFormatter = ScalingFormatters.dataAmountInSiBitsUs();
     assertThat(siBitFormatter.format(bitsValue)).isEqualTo(expectedFormat);
   }
-  
+
   @Test
   public void format_bit_withSeveralBits_shouldUseWholeBits() {
     checkBitsFormat(measureOfBits(1), "1 bit");
@@ -64,7 +64,7 @@ public class ScalingFormattersTest {
   private static Quantity<Information> measureOfBytes(long bytesValue) {
     return Quantities.getQuantity(bytesValue, BYTE);
   }
-  
+
   private static Quantity<Information> measureOfBytes(BigDecimal bigValue) {
     return Quantities.getQuantity(bigValue, BYTE);
   }
@@ -77,7 +77,7 @@ public class ScalingFormattersTest {
         ScalingFormatters.dataAmountInIecBinaryBytesUs();
     assertThat(bytesIecFormatter.format(bytesValue)).isEqualTo(expectedFormat);
   }
-  
+
   @Test
   public void format_byte_withSeveralBits_shouldUseFractionalBytes() {
     checkBytesFormat(measureOfBits(1), "0.125 B");

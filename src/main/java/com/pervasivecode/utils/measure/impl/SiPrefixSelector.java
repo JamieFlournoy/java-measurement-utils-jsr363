@@ -78,7 +78,7 @@ public class SiPrefixSelector implements QuantityPrefixSelector {
         return measure.to(MetricPrefix.YOCTO(formatUnit));
       }
     }
-    
+
     return measure.to(formatUnit);
   }
 }

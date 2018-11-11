@@ -19,7 +19,7 @@ public interface QuantityPrefixSelector {
    * <p>
    * Example: A value representing 50000 meters would be converted to a value representing 50
    * kilometers.
-   * 
+   *
    * @param <Q> The kind of value represented by the measure. Example: {@link Mass}
    * @param measure The value to scale with a unit prefix.
    * @param whole The base "ones" unit for the type of thing being represented.
