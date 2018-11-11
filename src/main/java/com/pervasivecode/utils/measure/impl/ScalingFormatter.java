@@ -41,7 +41,25 @@ public class ScalingFormatter<Q extends Quantity<Q>> implements QuantityFormatte
 
   /**
    * Set up a ScalingFormatter with the specified scaling and formatting behavior.
-   * 
+   *
+   * @param baseInformationUnit The fundamental unit of this type of measurement, e.g.
+   *        {@link Units#OHM OHM}.
+   * @param prefixSelector This decides which scale prefix is appropriate to use for any given value
+   *        of any given magnitude.
+   * @param numberFormat This constructs the correct String representation for the numeric portion
+   *        of the Quantity, after it has been scaled by the {@code prefixSelector}.
+   */
+  public ScalingFormatter(Unit<Q> baseInformationUnit, QuantityPrefixSelector prefixSelector,
+      NumberFormat numberFormat) {
+    this.baseUnit = checkNotNull(baseInformationUnit);
+    this.prefixSelector = checkNotNull(prefixSelector);
+    this.numberFormat = checkNotNull(numberFormat);
+    this.unitFormat = SimpleUnitFormat.getInstance();
+  }
+
+  /**
+   * Set up a ScalingFormatter with the specified scaling and formatting behavior.
+   *
    * @param baseInformationUnit The fundamental unit of this type of measurement, e.g.
    *        {@link Units#OHM OHM}.
    * @param prefixSelector This decides which scale prefix is appropriate to use for any given value
@@ -56,22 +74,18 @@ public class ScalingFormatter<Q extends Quantity<Q>> implements QuantityFormatte
    */
   public ScalingFormatter(Unit<Q> baseInformationUnit, QuantityPrefixSelector prefixSelector,
       NumberFormat numberFormat, UnitLabelProvider<Q> unitLabelProvider) {
-    this.baseUnit = checkNotNull(baseInformationUnit);
-    this.prefixSelector = checkNotNull(prefixSelector);
-
-    this.numberFormat = checkNotNull(numberFormat);
-    this.unitFormat = SimpleUnitFormat.getInstance();
+    this(baseInformationUnit, prefixSelector, numberFormat);
 
     UnitFormatLabelSetter<Q> labelSetter =
-        new UnitFormatLabelSetter<Q>(unitLabelProvider, unitFormat);
-    labelSetter.setBaseUnitLabel(baseUnit);
-    labelSetter.setSiUnitLabels(baseUnit);
-    labelSetter.setIecBinaryUnitLabels(baseUnit);
+          new UnitFormatLabelSetter<Q>(unitLabelProvider, unitFormat);
+    labelSetter.setBaseUnitLabel(baseInformationUnit);
+    labelSetter.setSiUnitLabels(baseInformationUnit);
+    labelSetter.setIecBinaryUnitLabels(baseInformationUnit);
   }
 
   /**
    * Scale and format a value.
-   * 
+   *
    * @param measure The value to scale and format.
    * @return The scaled and formatted String representation of {@code measure}.
    */
@@ -94,7 +108,7 @@ public class ScalingFormatter<Q extends Quantity<Q>> implements QuantityFormatte
   /**
    * Populate a SimpleUnitFormat instance with labels that include prefixes from the SI and IEC
    * Binary systems of prefixes.
-   * 
+   *
    * @param <P> The kind of measurement that this instance will provide labels for. Example:
    *        {@link javax.measure.quantity.Area Area}
    */
