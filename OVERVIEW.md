@@ -1,5 +1,9 @@
 # Code Overview
 
+If you prefer Javadocs, they are available on `javadoc.io`:
+
+[![Javadocs](https://www.javadoc.io/badge/com.pervasivecode/measurement-utils-jsr363.svg)](https://www.javadoc.io/doc/com.pervasivecode/measurement-utils-jsr363)
+
 ## Interfaces
 
 ### [QuantityFormatter](src/main/java/com/pervasivecode/utils/measure/api/QuantityFormatter.java)

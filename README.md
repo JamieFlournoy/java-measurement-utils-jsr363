@@ -11,7 +11,12 @@ This library provides bytes-per-second and bits-per-second unit types, and code 
 
 ## Overview of included classes
 
-See the separate [OVERVIEW.md](OVERVIEW.md) file for a description of what interfaces and classes are included.
+Javadocs are available on `javadoc.io`:
+
+[![Javadocs](https://www.javadoc.io/badge/com.pervasivecode/measurement-utils-jsr363.svg)](https://www.javadoc.io/doc/com.pervasivecode/measurement-utils-jsr363)
+
+
+See the separate [OVERVIEW.md](OVERVIEW.md) file for a description of what interfaces and classes are included. (Overview content is taken from class Javadoc comments, so there's no need to read both.)
 
 ## How to use it in your code
 
