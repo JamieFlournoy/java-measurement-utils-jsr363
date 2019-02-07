@@ -5,6 +5,7 @@ import static tec.uom.se.unit.Units.SECOND;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 import javax.measure.Quantity;
 import javax.measure.Unit;
@@ -15,6 +16,9 @@ import com.pervasivecode.utils.measure.impl.ScalingDurationFormatter;
 import com.pervasivecode.utils.measure.impl.ScalingFormatter;
 import com.pervasivecode.utils.measure.impl.SiPrefixSelector;
 import com.pervasivecode.utils.measure.impl.SimpleUnitLabelProvider;
+import com.pervasivecode.utils.time.DurationFormat;
+import com.pervasivecode.utils.time.DurationFormats;
+import com.pervasivecode.utils.time.DurationFormatter;
 import si.uom.SI;
 import tec.uom.se.quantity.Quantities;
 
@@ -41,7 +45,7 @@ public class DurationExample implements ExampleApplication {
 
   @Override
   public void runExample(PrintWriter output) {
-    QuantityFormatter<Time> formatter = ScalingDurationFormatter.US();
+    FormatterPicker picker = new FormatterPicker();
     QuantityFormatter<Time> siFormatter = timeInSiSeconds();
 
     for (int i = 0; i < 16; i++) {
@@ -49,9 +53,45 @@ public class DurationExample implements ExampleApplication {
       long value = 1L << exponent;
       Quantity<Time> millis = Quantities
           .getQuantity(BigDecimal.valueOf(value).divide(BigDecimal.valueOf(1000)), SI.SECOND);
+
+      QuantityFormatter<Time> quantityFormatter = picker.getFormatFor(value);
       String outputLine =
-          String.format("%s (%s)", formatter.format(millis), siFormatter.format(millis));
+          String.format("%s (%s)", quantityFormatter.format(millis), siFormatter.format(millis));
       output.println(outputLine);
+    }
+  }
+
+  private static class FormatterPicker {
+    private final QuantityFormatter<Time> subsecondFormatter;
+    private final QuantityFormatter<Time> subminuteFormatter;
+    private final QuantityFormatter<Time> minuteOrMoreFormatter;
+
+    public FormatterPicker() {
+      final DurationFormat usDefault = DurationFormats.getUsDefaultInstance();
+      subsecondFormatter = makeQuantityFormatter(usDefault);
+
+      subminuteFormatter = makeQuantityFormatter(DurationFormat.builder(usDefault) //
+          .setSmallestUnit(ChronoUnit.SECONDS) //
+          .setNumFractionalDigits(3) //
+          .build());
+
+      minuteOrMoreFormatter = makeQuantityFormatter(DurationFormat.builder(usDefault) //
+          .setSmallestUnit(ChronoUnit.SECONDS) //
+          .build());
+    }
+
+    private static QuantityFormatter<Time> makeQuantityFormatter(DurationFormat durationFormat) {
+      return new ScalingDurationFormatter(new DurationFormatter(durationFormat));
+    }
+
+    QuantityFormatter<Time> getFormatFor(long millis) {
+      if (millis < 1000) {
+        return subsecondFormatter;
+      }
+      if (millis >= 60000) {
+        return minuteOrMoreFormatter;
+      }
+      return subminuteFormatter;
     }
   }
 }
