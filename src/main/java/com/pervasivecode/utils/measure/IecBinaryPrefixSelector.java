@@ -1,9 +1,8 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import java.math.BigDecimal;
 import javax.measure.Quantity;
 import javax.measure.Unit;
-import com.pervasivecode.utils.measure.api.QuantityPrefixSelector;
 import tec.uom.lib.common.BinaryPrefix;
 
 /**

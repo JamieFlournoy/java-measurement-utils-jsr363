@@ -1,4 +1,4 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -11,6 +11,8 @@ import systems.uom.unicode.CLDR;
  * formats, suitable for use in the {@link Locale#US US} locale.
  */
 public class ScalingFormatters {
+  private ScalingFormatters() {}
+
   /**
    * Get a formatter that presents data amounts measured in bytes scaled with IEC binary prefixes
    * and formatted as appropriate for the {@link Locale#US US} locale.

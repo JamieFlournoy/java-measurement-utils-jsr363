@@ -1,4 +1,4 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import static com.google.common.truth.Truth.assertThat;
 import static tec.uom.se.unit.MetricPrefix.EXA;
@@ -11,6 +11,7 @@ import javax.measure.Quantity;
 import javax.measure.quantity.Time;
 import org.junit.Before;
 import org.junit.Test;
+import com.pervasivecode.utils.measure.ScalingDurationFormatter;
 import com.pervasivecode.utils.time.DurationFormat;
 import com.pervasivecode.utils.time.DurationFormats;
 import com.pervasivecode.utils.time.DurationFormatter;

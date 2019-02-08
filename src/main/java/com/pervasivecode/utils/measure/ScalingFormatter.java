@@ -1,14 +1,10 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import java.io.IOException;
 import java.text.NumberFormat;
 import javax.measure.Quantity;
 import javax.measure.Unit;
 import javax.measure.format.UnitFormat;
-import com.pervasivecode.utils.measure.api.QuantityFormatter;
-import com.pervasivecode.utils.measure.api.QuantityPrefixSelector;
-import com.pervasivecode.utils.measure.api.UnitLabelProvider;
 import tec.uom.lib.common.BinaryPrefix;
 import tec.uom.se.format.SimpleUnitFormat;
 import tec.uom.se.unit.MetricPrefix;
@@ -96,12 +92,7 @@ public class ScalingFormatter<Q extends Quantity<Q>> implements QuantityFormatte
     StringBuilder sb = new StringBuilder();
     sb.append(this.numberFormat.format(m.getValue().doubleValue()));
     sb.append(' ');
-    try {
-      this.unitFormat.format(m.getUnit(), sb);
-    } catch (IOException ioe) {
-      // We are using a StringBuilder, so there's not going to be an IOException.
-      throw new RuntimeException(ioe);
-    }
+    sb.append(this.unitFormat.format(m.getUnit()));
     return sb.toString();
   }
 

@@ -1,4 +1,4 @@
-package com.pervasivecode.utils.measure.api;
+package com.pervasivecode.utils.measure;
 
 import javax.measure.Quantity;
 import javax.measure.Unit;

@@ -1,4 +1,4 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import java.math.BigDecimal;
 
@@ -6,6 +6,8 @@ import java.math.BigDecimal;
  * Prefixes in the IEC binary system (Kibi- = 1024, Mebi- = 1024*Kibi, etc.).
  */
 class IecBinaryPrefixes {
+  private IecBinaryPrefixes() {}
+
   static final long KIBI_FACTOR = 1024L;
 
   static final long MEBI_FACTOR = KIBI_FACTOR * 1024L;

@@ -1,4 +1,4 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import static tec.uom.se.unit.MetricPrefix.NANO;
 import static tec.uom.se.unit.Units.SECOND;
@@ -6,7 +6,6 @@ import java.time.Duration;
 import java.util.Objects;
 import javax.measure.Quantity;
 import javax.measure.quantity.Time;
-import com.pervasivecode.utils.measure.api.QuantityFormatter;
 import com.pervasivecode.utils.time.DurationFormatter;
 import tec.uom.se.quantity.Quantities;
 

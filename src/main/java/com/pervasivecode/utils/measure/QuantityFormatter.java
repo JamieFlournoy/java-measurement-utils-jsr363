@@ -1,4 +1,4 @@
-package com.pervasivecode.utils.measure.api;
+package com.pervasivecode.utils.measure;
 
 import java.util.Locale;
 import javax.measure.Quantity;

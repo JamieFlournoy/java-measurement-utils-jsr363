@@ -1,4 +1,4 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import java.math.BigDecimal;
 
@@ -7,6 +7,8 @@ import java.math.BigDecimal;
  * 1000^x where x is an integer.
  */
 class SiThousandPrefixes {
+  private SiThousandPrefixes() {}
+
   static final long KILO_FACTOR = 1000L;
 
   static final long MEGA_FACTOR = KILO_FACTOR * 1000L;

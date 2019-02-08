@@ -1,4 +1,4 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import static systems.uom.unicode.CLDR.BIT;
 import static systems.uom.unicode.CLDR.BYTE;
@@ -9,6 +9,8 @@ import tec.uom.se.unit.ProductUnit;
 
 /** Units to help with type-safe formatting of information rates. */
 public class InformationRateUnits {
+  private InformationRateUnits() {}
+
   public final static Unit<InformationRate> BYTES_PER_SECOND =
       new ProductUnit<>(BYTE.divide(SECOND));
 

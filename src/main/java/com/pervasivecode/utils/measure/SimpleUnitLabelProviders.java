@@ -1,12 +1,11 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
-import static com.pervasivecode.utils.measure.impl.InformationRateUnits.BITS_PER_SECOND;
-import static com.pervasivecode.utils.measure.impl.InformationRateUnits.BYTES_PER_SECOND;
+import static com.pervasivecode.utils.measure.InformationRateUnits.BITS_PER_SECOND;
+import static com.pervasivecode.utils.measure.InformationRateUnits.BYTES_PER_SECOND;
 import static systems.uom.unicode.CLDR.BIT;
 import static systems.uom.unicode.CLDR.BYTE;
 import javax.measure.Unit;
 import com.google.common.collect.ImmutableMap;
-import com.pervasivecode.utils.measure.api.UnitLabelProvider;
 import systems.uom.quantity.Information;
 import systems.uom.quantity.InformationRate;
 import systems.uom.unicode.CLDR;
@@ -20,6 +19,8 @@ import tec.uom.se.unit.MetricPrefix;
  * {@link InformationRateUnits#BITS_PER_SECOND BITS_PER_SECOND}.
  */
 public class SimpleUnitLabelProviders {
+  private SimpleUnitLabelProviders() {}
+
   private static final ImmutableMap<Unit<Information>, String> US_INFORMATION_LABELS =
       buildUsInformationLabels();
 

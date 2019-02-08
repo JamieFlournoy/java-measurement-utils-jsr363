@@ -1,9 +1,8 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import java.math.BigDecimal;
 import javax.measure.Quantity;
 import javax.measure.Unit;
-import com.pervasivecode.utils.measure.api.QuantityPrefixSelector;
 import tec.uom.se.unit.MetricPrefix;
 
 /**
@@ -24,7 +23,8 @@ public class SiPrefixSelector implements QuantityPrefixSelector {
   @Override
   public <Q extends Quantity<Q>> Quantity<Q> selectBestPrefix(Quantity<Q> measure,
       Unit<Q> formatUnit) {
-    BigDecimal asBig = BigDecimal.valueOf(measure.getValue().doubleValue());
+    BigDecimal asBig = BigDecimal.valueOf(
+        measure.to(formatUnit).getValue().doubleValue());
     if (asBig.compareTo(SiThousandPrefixes.YOTTA_FACTOR) >= 0) {
       return measure.to(MetricPrefix.YOTTA(formatUnit));
     }
@@ -74,9 +74,9 @@ public class SiPrefixSelector implements QuantityPrefixSelector {
       if (asBig.compareTo(SiThousandPrefixes.ZEPTO_FACTOR) >= 0) {
         return measure.to(MetricPrefix.ZEPTO(formatUnit));
       }
-      if (asBig.compareTo(SiThousandPrefixes.YOCTO_FACTOR) >= 0) {
+//      if (asBig.compareTo(SiThousandPrefixes.YOCTO_FACTOR) >= 0) {
         return measure.to(MetricPrefix.YOCTO(formatUnit));
-      }
+//      }
     }
 
     return measure.to(formatUnit);

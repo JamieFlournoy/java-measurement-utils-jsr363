@@ -1,4 +1,4 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import static com.google.common.truth.Truth.assertThat;
 import java.math.BigDecimal;
@@ -8,8 +8,11 @@ import javax.measure.Quantity;
 import javax.measure.quantity.Length;
 import org.junit.Test;
 import com.google.common.collect.ImmutableMap;
-import com.pervasivecode.utils.measure.api.QuantityFormatter;
-import com.pervasivecode.utils.measure.api.UnitLabelProvider;
+import com.pervasivecode.utils.measure.QuantityFormatter;
+import com.pervasivecode.utils.measure.ScalingFormatter;
+import com.pervasivecode.utils.measure.SiPrefixSelector;
+import com.pervasivecode.utils.measure.SimpleUnitLabelProvider;
+import com.pervasivecode.utils.measure.UnitLabelProvider;
 import tec.uom.se.quantity.Quantities;
 import tec.uom.se.unit.Units;
 

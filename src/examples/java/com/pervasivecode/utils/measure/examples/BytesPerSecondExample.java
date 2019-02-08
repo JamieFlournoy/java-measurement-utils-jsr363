@@ -1,12 +1,12 @@
 package com.pervasivecode.utils.measure.examples;
 
-import static com.pervasivecode.utils.measure.impl.InformationRateUnits.BYTES_PER_SECOND;
+import static com.pervasivecode.utils.measure.InformationRateUnits.BYTES_PER_SECOND;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import java.io.PrintWriter;
 import java.util.Locale;
 import javax.measure.Quantity;
-import com.pervasivecode.utils.measure.api.QuantityFormatter;
-import com.pervasivecode.utils.measure.impl.ScalingFormatters;
+import com.pervasivecode.utils.measure.QuantityFormatter;
+import com.pervasivecode.utils.measure.ScalingFormatters;
 import systems.uom.quantity.InformationRate;
 import tec.uom.se.quantity.Quantities;
 

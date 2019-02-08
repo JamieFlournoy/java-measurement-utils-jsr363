@@ -1,10 +1,9 @@
-package com.pervasivecode.utils.measure.impl;
+package com.pervasivecode.utils.measure;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Map;
 import javax.measure.Quantity;
 import javax.measure.Unit;
-import com.pervasivecode.utils.measure.api.UnitLabelProvider;
 
 /**
  * This class provides unit labels for a single locale by looking them up in a static mapping of
