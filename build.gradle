@@ -25,6 +25,9 @@ plugins {
 
     id 'maven-publish'
     id 'signing'
+
+    // This adds tasks to measure code coverage with JaCoCo.
+    id 'jacoco'
 }
 
 apply plugin: 'java-library'
@@ -78,6 +81,31 @@ sourceSets {
 configurations {
     examplesCompile.extendsFrom mainCompile
     examplesRuntime.extendsFrom mainRuntime
+}
+
+test {
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+    }
+
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+                fileTree(dir: it,
+                         exclude: ['**/AutoValue_*'])
+            })
+    }
 }
 
 addCucumberSuite 'cucumberTest'
