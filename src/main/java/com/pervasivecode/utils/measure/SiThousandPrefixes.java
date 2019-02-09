@@ -9,37 +9,43 @@ import java.math.BigDecimal;
 class SiThousandPrefixes {
   private SiThousandPrefixes() {}
 
-  static final long KILO_FACTOR = 1000L;
+  //
+  // Greater than one
+  //
 
-  static final long MEGA_FACTOR = KILO_FACTOR * 1000L;
+  static final BigDecimal KILO_FACTOR = BigDecimal.valueOf(1000L);
 
-  static final long GIGA_FACTOR = MEGA_FACTOR * 1000L;
+  static final BigDecimal MEGA_FACTOR = KILO_FACTOR.multiply(KILO_FACTOR);
 
-  static final long TERA_FACTOR = GIGA_FACTOR * 1000L;
+  static final BigDecimal GIGA_FACTOR = MEGA_FACTOR.multiply(KILO_FACTOR);
 
-  static final long PETA_FACTOR = TERA_FACTOR * 1000L;
+  static final BigDecimal TERA_FACTOR = GIGA_FACTOR.multiply(KILO_FACTOR);
 
-  static final long EXA_FACTOR = PETA_FACTOR * 1000L;
+  static final BigDecimal PETA_FACTOR = TERA_FACTOR.multiply(KILO_FACTOR);
 
-  private static final BigDecimal KILO_BIGDECIMAL = BigDecimal.valueOf(KILO_FACTOR);
+  static final BigDecimal EXA_FACTOR = PETA_FACTOR.multiply(KILO_FACTOR);
 
-  static final BigDecimal ZETTA_FACTOR = BigDecimal.valueOf(EXA_FACTOR).multiply(KILO_BIGDECIMAL);
+  static final BigDecimal ZETTA_FACTOR = EXA_FACTOR.multiply(KILO_FACTOR);
 
-  static final BigDecimal YOTTA_FACTOR = ZETTA_FACTOR.multiply(KILO_BIGDECIMAL);
+  static final BigDecimal YOTTA_FACTOR = ZETTA_FACTOR.multiply(KILO_FACTOR);
 
-  static final BigDecimal MILLI_FACTOR = BigDecimal.valueOf(1).divide(KILO_BIGDECIMAL);
+  //
+  // Less than one
+  //
+  
+  static final BigDecimal MILLI_FACTOR = BigDecimal.valueOf(1, 3);
 
-  static final BigDecimal MICRO_FACTOR = MILLI_FACTOR.divide(KILO_BIGDECIMAL);
+  static final BigDecimal MICRO_FACTOR = MILLI_FACTOR.multiply(MILLI_FACTOR);
 
-  static final BigDecimal NANO_FACTOR = MICRO_FACTOR.divide(KILO_BIGDECIMAL);
+  static final BigDecimal NANO_FACTOR = MICRO_FACTOR.multiply(MILLI_FACTOR);
 
-  static final BigDecimal PICO_FACTOR = NANO_FACTOR.divide(KILO_BIGDECIMAL);
+  static final BigDecimal PICO_FACTOR = NANO_FACTOR.multiply(MILLI_FACTOR);
 
-  static final BigDecimal FEMTO_FACTOR = PICO_FACTOR.divide(KILO_BIGDECIMAL);
+  static final BigDecimal FEMTO_FACTOR = PICO_FACTOR.multiply(MILLI_FACTOR);
 
-  static final BigDecimal ATTO_FACTOR = FEMTO_FACTOR.divide(KILO_BIGDECIMAL);
+  static final BigDecimal ATTO_FACTOR = FEMTO_FACTOR.multiply(MILLI_FACTOR);
 
-  static final BigDecimal ZEPTO_FACTOR = ATTO_FACTOR.divide(KILO_BIGDECIMAL);
+  static final BigDecimal ZEPTO_FACTOR = ATTO_FACTOR.multiply(MILLI_FACTOR);
 
-  static final BigDecimal YOCTO_FACTOR = ZEPTO_FACTOR.divide(KILO_BIGDECIMAL);
+  static final BigDecimal YOCTO_FACTOR = ZEPTO_FACTOR.multiply(MILLI_FACTOR);
 }

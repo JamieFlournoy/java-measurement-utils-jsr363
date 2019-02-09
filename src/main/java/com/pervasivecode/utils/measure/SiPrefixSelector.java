@@ -23,8 +23,10 @@ public class SiPrefixSelector implements QuantityPrefixSelector {
   @Override
   public <Q extends Quantity<Q>> Quantity<Q> selectBestPrefix(Quantity<Q> measure,
       Unit<Q> formatUnit) {
+
     BigDecimal asBig = BigDecimal.valueOf(
         measure.to(formatUnit).getValue().doubleValue());
+
     if (asBig.compareTo(SiThousandPrefixes.YOTTA_FACTOR) >= 0) {
       return measure.to(MetricPrefix.YOTTA(formatUnit));
     }
@@ -32,26 +34,25 @@ public class SiPrefixSelector implements QuantityPrefixSelector {
       return measure.to(MetricPrefix.ZETTA(formatUnit));
     }
 
-    // TODO just use asBig here.
-    long asLong = measure.getValue().longValue();
-    if (asLong >= SiThousandPrefixes.EXA_FACTOR) {
+    if (asBig.compareTo(SiThousandPrefixes.EXA_FACTOR) >= 0) {
       return measure.to(MetricPrefix.EXA(formatUnit));
     }
-    if (asLong >= SiThousandPrefixes.PETA_FACTOR) {
+    if (asBig.compareTo(SiThousandPrefixes.PETA_FACTOR) >= 0) {
       return measure.to(MetricPrefix.PETA(formatUnit));
     }
-    if (asLong >= SiThousandPrefixes.TERA_FACTOR) {
+    if (asBig.compareTo(SiThousandPrefixes.TERA_FACTOR) >= 0) {
       return measure.to(MetricPrefix.TERA(formatUnit));
     }
-    if (asLong >= SiThousandPrefixes.GIGA_FACTOR) {
+    if (asBig.compareTo(SiThousandPrefixes.GIGA_FACTOR) >= 0) {
       return measure.to(MetricPrefix.GIGA(formatUnit));
     }
-    if (asLong >= SiThousandPrefixes.MEGA_FACTOR) {
+    if (asBig.compareTo(SiThousandPrefixes.MEGA_FACTOR) >= 0) {
       return measure.to(MetricPrefix.MEGA(formatUnit));
     }
-    if (asLong >= SiThousandPrefixes.KILO_FACTOR) {
+    if (asBig.compareTo(SiThousandPrefixes.KILO_FACTOR) >= 0) {
       return measure.to(MetricPrefix.KILO(formatUnit));
     }
+
     if (asBig.compareTo(BigDecimal.ONE) < 0) {
       if (asBig.compareTo(SiThousandPrefixes.MILLI_FACTOR) >= 0) {
         return measure.to(MetricPrefix.MILLI(formatUnit));
@@ -74,9 +75,7 @@ public class SiPrefixSelector implements QuantityPrefixSelector {
       if (asBig.compareTo(SiThousandPrefixes.ZEPTO_FACTOR) >= 0) {
         return measure.to(MetricPrefix.ZEPTO(formatUnit));
       }
-//      if (asBig.compareTo(SiThousandPrefixes.YOCTO_FACTOR) >= 0) {
-        return measure.to(MetricPrefix.YOCTO(formatUnit));
-//      }
+      return measure.to(MetricPrefix.YOCTO(formatUnit));
     }
 
     return measure.to(formatUnit);
