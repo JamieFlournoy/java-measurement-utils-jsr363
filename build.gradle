@@ -177,6 +177,7 @@ javadoc {
         // a list of Java package names of classes which are
         // documented in the Javadocs rooted at the specified URL.)
         linksOffline "https://docs.oracle.com/javase/10/docs/api/", 'gradle/javadocs/jdk/10'
+        linksOffline "https://www.javadoc.io/page/com.pervasivecode/time-utils/0.11/", 'gradle/javadocs/time-utils/0.11'
         linksOffline "https://www.javadoc.io/page/javax.measure/unit-api/1.0/", 'gradle/javadocs/unit-api/1.0'
    }
 }
