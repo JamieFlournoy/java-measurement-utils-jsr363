@@ -1,6 +1,7 @@
 package com.pervasivecode.utils.measure.examples;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import javax.measure.Quantity;
 import com.pervasivecode.utils.measure.QuantityFormatter;
@@ -17,7 +18,7 @@ import tec.uom.se.quantity.Quantities;
  */
 public class BytesExample implements ExampleApplication {
   public static void main(String[] args) {
-    new BytesExample().runExample(new PrintWriter(System.out, true, UTF_8));
+    new BytesExample().runExample(new PrintWriter(new OutputStreamWriter(System.out, UTF_8), true));
   }
 
   @Override

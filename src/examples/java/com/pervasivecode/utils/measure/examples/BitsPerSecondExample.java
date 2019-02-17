@@ -2,7 +2,9 @@ package com.pervasivecode.utils.measure.examples;
 
 import static com.pervasivecode.utils.measure.InformationRateUnits.BITS_PER_SECOND;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.Locale;
 import javax.measure.Quantity;
 import com.pervasivecode.utils.measure.QuantityFormatter;
 import com.pervasivecode.utils.measure.ScalingFormatters;
@@ -17,7 +19,8 @@ import tec.uom.se.quantity.Quantities;
  */
 public class BitsPerSecondExample implements ExampleApplication {
   public static void main(String[] args) {
-    new BitsPerSecondExample().runExample(new PrintWriter(System.out, true, UTF_8));
+    new BitsPerSecondExample()
+        .runExample(new PrintWriter(new OutputStreamWriter(System.out, UTF_8), true));
   }
 
   @Override

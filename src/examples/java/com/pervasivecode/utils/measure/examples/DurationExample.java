@@ -2,6 +2,7 @@ package com.pervasivecode.utils.measure.examples;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static tec.uom.se.unit.Units.SECOND;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -34,7 +35,8 @@ import tec.uom.se.quantity.Quantities;
  */
 public class DurationExample implements ExampleApplication {
   public static void main(String[] args) {
-    new DurationExample().runExample(new PrintWriter(System.out, true, UTF_8));
+    new DurationExample()
+        .runExample(new PrintWriter(new OutputStreamWriter(System.out, UTF_8), true));
   }
 
   public static ScalingFormatter<Time> timeInSiSeconds() {

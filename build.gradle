@@ -67,6 +67,7 @@ dependencies {
 
     // Dependencies needed when running ErrorProne checks:
     errorprone "com.google.errorprone:error_prone_core:2.3.2"
+    errorproneJavac "com.google.errorprone:error_prone_core:2.3.2"
 }
 
 
