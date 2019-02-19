@@ -54,7 +54,7 @@ dependencies {
 
     // Dependencies needed at runtime and compile-time, but not
     // exposed in the API of this library:
-    implementation 'com.pervasivecode:time-utils:0.11'
+    implementation 'com.pervasivecode:time-utils:1.0'
     implementation 'com.google.guava:guava:27.0.1-jre'
 
     // Dependencies needed for running tests:
@@ -177,7 +177,7 @@ javadoc {
         // a list of Java package names of classes which are
         // documented in the Javadocs rooted at the specified URL.)
         linksOffline "https://docs.oracle.com/javase/10/docs/api/", 'gradle/javadocs/jdk/10'
-        linksOffline "https://www.javadoc.io/page/com.pervasivecode/time-utils/0.11/", 'gradle/javadocs/time-utils/0.11'
+        linksOffline "https://www.javadoc.io/page/com.pervasivecode/time-utils/1.0/", 'gradle/javadocs/time-utils/1.0'
         linksOffline "https://www.javadoc.io/page/javax.measure/unit-api/1.0/", 'gradle/javadocs/unit-api/1.0'
    }
 }
