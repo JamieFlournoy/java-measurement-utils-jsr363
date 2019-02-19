@@ -36,7 +36,7 @@ apply plugin: 'net.ltgt.errorprone'
 repositories {
     jcenter()
 
-    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    // maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 targetCompatibility = '1.8'
@@ -214,7 +214,7 @@ publishing {
                 // response. Likewise, publishing assets to a release
                 // staging repository will only work if this version
                 // does _not_ end in "-SNAPSHOT".
-                version = '0.9.3'
+                version = '1.0-SNAPSHOT'
 
                 pom {
                     name = 'Java Measurement Utilities for JSR 363'
